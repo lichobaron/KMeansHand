@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/test_imager.dir/test_imager.C.o  -o test_imager ../libvrpn.a ../quat/libquat.a -lm 

@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/test_gen_rpc.dir/main_test.C.o CMakeFiles/test_gen_rpc.dir/rpc_Test_Remote.C.o CMakeFiles/test_gen_rpc.dir/rpc_Test.C.o  -o test_gen_rpc ../../libvrpn.a ../../quat/libquat.a -lm 

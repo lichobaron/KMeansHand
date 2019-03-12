@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/vrpn_print_devices.dir/vrpn_print_devices.C.o  -o vrpn_print_devices ../libvrpn.a ../quat/libquat.a -lm 

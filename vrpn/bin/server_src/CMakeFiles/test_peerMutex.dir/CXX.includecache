@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/licho/Downloads/vrpn/server_src/test_peerMutex.C
+stdio.h
+-
+string.h
+-
+stdlib.h
+-
+vrpn_Mutex.h
+-
+
+/Users/licho/Downloads/vrpn/vrpn_Configure.h
+dinput.h
+-
+
+/Users/licho/Downloads/vrpn/vrpn_Mutex.h
+stddef.h
+-
+vrpn_Configure.h
+/Users/licho/Downloads/vrpn/vrpn_Configure.h
+vrpn_Types.h
+/Users/licho/Downloads/vrpn/vrpn_Types.h
+
+/Users/licho/Downloads/vrpn/vrpn_Types.h
+vrpn_Configure.h
+/Users/licho/Downloads/vrpn/vrpn_Configure.h
+

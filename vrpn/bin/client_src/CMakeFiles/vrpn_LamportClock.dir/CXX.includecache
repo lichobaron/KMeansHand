@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/licho/Downloads/vrpn/client_src/vrpn_LamportClock.t.C
+iostream.h
+-
+iostream
+-
+assert.h
+-
+vrpn_LamportClock.h
+-
+
+/Users/licho/Downloads/vrpn/vrpn_Configure.h
+dinput.h
+-
+
+/Users/licho/Downloads/vrpn/vrpn_LamportClock.h
+vrpn_Configure.h
+/Users/licho/Downloads/vrpn/vrpn_Configure.h
+vrpn_Types.h
+/Users/licho/Downloads/vrpn/vrpn_Types.h
+
+/Users/licho/Downloads/vrpn/vrpn_Types.h
+vrpn_Configure.h
+/Users/licho/Downloads/vrpn/vrpn_Configure.h
+

@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/licho/Downloads/vrpn/quat/matrix.c
+math.h
+-
+stdio.h
+-
+quat.h
+/Users/licho/Downloads/vrpn/quat/quat.h
+
+/Users/licho/Downloads/vrpn/quat/quat.c
+quat.h
+/Users/licho/Downloads/vrpn/quat/quat.h
+math.h
+-
+stdio.h
+-
+
+/Users/licho/Downloads/vrpn/quat/quat.h
+
+/Users/licho/Downloads/vrpn/quat/vector.c
+math.h
+-
+stdio.h
+-
+quat.h
+/Users/licho/Downloads/vrpn/quat/quat.h
+
+/Users/licho/Downloads/vrpn/quat/xyzquat.c
+quat.h
+/Users/licho/Downloads/vrpn/quat/quat.h
+

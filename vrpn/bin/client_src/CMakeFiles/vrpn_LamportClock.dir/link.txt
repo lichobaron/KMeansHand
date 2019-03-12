@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/vrpn_LamportClock.dir/vrpn_LamportClock.t.C.o  -o vrpn_LamportClock ../libvrpn.a ../quat/libquat.a -lm 
