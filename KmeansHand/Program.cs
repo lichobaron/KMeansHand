@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -7,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace KmeansHand
 {
 
-    class Cluster
+	class Cluster
     {
         public Cluster(int[] clustering, double[][] means, double[][] rawData)
         {
@@ -27,63 +26,185 @@ namespace KmeansHand
         {
             Console.WriteLine("Begin k-means demo");
 
-            int size = 600;
-            string path = "/Users/licho/Documents/varios/KMeansHand/KmeansHand/Data/movall.txt";
+			string path = "C:/Users/LICHO/Documents/MyWorkspace/KMeansHand/various/";
+			//string path = "/Users/licho/Documents/varios/KMeansHand/KmeansHand/Data/movall.txt";
+			int size = 516;
+            
+			string rawPath = path + "d2.txt";
 
-            double[][] rawData;
-            rawData = CargarDatos(path, size);
-            Cluster cluster = RunClusters(6, rawData);
+			double[][] rawData;
+            rawData = readData(rawPath, size);
+
+			int[] finger1 = { 0,1 };
+			Cluster cluster1 = CreateClusters(3, rawData, finger1);
+			saveData(path + "finger1.txt", cluster1);
+
+			int[] finger2 = { 3, 4 };
+			Cluster cluster2 = CreateClusters(3, rawData, finger2);
+			saveData(path + "finger2.txt", cluster2);
+
+			int[] finger3 = { 6, 7 };
+			Cluster cluster3 = CreateClusters(3, rawData, finger3);
+			saveData(path + "finger3.txt", cluster3);
+
+			int[] finger4 = { 9, 10 };
+			Cluster cluster4 = CreateClusters(3, rawData, finger4);
+			saveData(path + "finger4.txt", cluster4);
+
+			int[] finger5 = { 12, 13 };
+			Cluster cluster5 = CreateClusters(3, rawData, finger5);
+			saveData(path + "finger5.txt", cluster5);
+
+			string[] filenames = { path + "finger1.txt", path + "finger2.txt", path + "finger3.txt", path + "finger4.txt", path + "finger5.txt"};
+
+			double[][][] means = getMeansFromFile(filenames, 3);
+
+			double[] tuple0 = { 0.37, 0.49, 0.57, 0.33, 1.00, 0.74, 0.33, 0.34, 0.61, 0.10, 1.00, 0.61, 0.11, 0.17 };
+
+			Console.WriteLine(string.Join(", ", TestFingers(tuple0, means)));
+			Console.ReadLine();
 
 
-            double[] tuple0 = { 0.37, 0.49, 0.57, 0.33, 1.00, 0.74, 0.33, 0.34, 0.61, 0.10, 1.00, 0.61, 0.11, 0.17 };
+		}
 
-            size = TestData(tuple0, cluster, size, cluster.RawData);
+		public static double[] getFingersTuple(double[] tuple, int finger) {
+			double[] r = new double[2];
+			switch (finger)
+			{
+				case 1:
+					r[0] = tuple[0];
+					r[1] = tuple[1];
+					break;
+				case 2:
+					r[0] = tuple[3];
+					r[1] = tuple[4];
+					break;
+				case 3:
+					r[0] = tuple[6];
+					r[1] = tuple[7];
+					break;
+				case 4:
+					r[0] = tuple[9];
+					r[1] = tuple[10];
+					break;
+				case 5:
+					r[0] = tuple[12];
+					r[1] = tuple[13];
+					break;
+				default:
+					r[0] = -1;
+					r[1] = -1;
+					break;
+			}
+			return r;
+		}
 
-            double[] tuple1 = { 0.37, 0.53, 0.57, 0.23, 1.00, 0.73, 0.32, 1.00, 0.61, 0.10, 1.00, 0.60, 0.10, 0.31 };
+		public static double[][][] getMeansFromFile(string[] fileNames, int numK)
+		{
+			double[][][] means = new double[5][][];
+			
+			for (int i =0; i < fileNames.Length; i++) {
+				means[i] = new double[numK][];
+				string filename = fileNames[i];
+				String line; try
+				{
+					StreamReader sr = new StreamReader(filename);
+					line = sr.ReadLine();
 
-            size = TestData(tuple1, cluster, size, cluster.RawData);
+					int j = 0;
+					while (line != null)
+					{
+						Regex reg = new Regex(@"([-+]?[0-9]*\.?[0-9]+)");
+						int tam = 0;
+						foreach (Match match in reg.Matches(line))
+						{
+							tam++;
+						}
+						means[i][j] = new double[tam];
 
-            double[] tuple2 = { 0.38, 0.51, 0.57, 0.22, 0.96, 0.77, 0.25, 0.25, 0.61, 0.09, 1.00, 0.59, 0.09, 0.33 };
+						int k = 0;
+						foreach (Match match in reg.Matches(line))
+						{
+							means[i][j][k] = double.Parse(match.Value, CultureInfo.InvariantCulture.NumberFormat);
+							k++;
+						}
 
-            size = TestData(tuple2, cluster, size, cluster.RawData);
+						j++;
+						line = sr.ReadLine();
+					}
+					sr.Close();
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine("Exception: " + e.Message);
+				}
+				finally
+				{
+					Console.WriteLine("Executing finally block files.");
+				}
+			}
+			
+			return means;
+		}
 
-            double[] tuple3 = { 0.44, 0.50, 0.59, 0.22, 0.96, 0.78, 0.24, 0.23, 0.61, 0.09, 1.00, 0.59, 0.09, 0.27 };
-
-            size = TestData(tuple3, cluster, size, cluster.RawData);
-
-            double[] tuple4 = { 0.44, 0.54, 0.60, 0.22, 0.95, 0.77, 0.24, 0.22, 0.59, 0.09, 1.00, 0.63, 0.09, 0.09 };
-
-            size = TestData(tuple4, cluster, size, cluster.RawData);
-
-            double[] tuple5 = { 0.40, 0.53, 0.58, 0.16, 0.96, 0.77, 0.24, 0.25, 0.61, 0.09, 1.00, 0.66, 0.09, 0.09 };
-
-            size = TestData(tuple5, cluster, size, cluster.RawData);
-
-        }
-
-        public static int TestData(double[] tuple, Cluster cluster, int size, double[][] rawData)
+		public static int[] TestFingers(double[] tuple, double[][][] means)
         {
-            size = size + 1;
 
-            double[][] newRaw = new double[size][];
+			int[] r = new int[5];
 
-
-            for (int i = 0; i < rawData.Length; i++)
-            {
-                newRaw[i] = rawData[i];
-            }
-
-            newRaw[size - 1] = tuple;
-
-            cluster.RawData = newRaw;
-
-            cluster = RunClusters(6, newRaw);
-            Console.WriteLine("Numero del cluster");
-            Console.WriteLine(cluster.Clustering[size - 1]);
-            return size;
+			for (int i = 0; i < 5; i++) //num dedos
+			{
+				int minIndex = 0;
+				double min = Distance(getFingersTuple(tuple,i), means[i][0]);
+				for (int j = 1; j < means[i].Length; j++)
+				{
+					if (Distance(getFingersTuple(tuple, i), means[i][j]) < min)
+					{
+						minIndex = j;
+					}
+				}
+				r[i] = translateSensor(minIndex);
+			}
+			return r;
         }
 
-        public static double[][] CargarDatos(string filename, int size)
+		public static int translateSensor(int num)
+		{
+			//Console.WriteLine(num);
+			int r = 99;
+			if (num == 0)
+			{
+				r = 0;
+			}
+			else if (num == 1)
+			{
+				r = -1;
+			}
+			else if (num == 2)
+			{
+				r = 1;
+			}
+			return r;
+		}
+
+		public static void saveData(string filename, Cluster cluster)
+		{
+			using (System.IO.StreamWriter file =
+				new System.IO.StreamWriter(@filename))
+			{
+				for (int i = 0; i < cluster.Means.Length; i++)
+				{
+					file.Write("[");
+					for (int j = 0; j < cluster.Means[i].Length; j++)
+					{
+						file.Write(cluster.Means[i][j].ToString("0.000", CultureInfo.InvariantCulture) + ", ");
+					}
+					file.WriteLine("]");
+				}
+			}
+		}
+
+		public static double[][] readData(string filename, int size)
         {
             double[][] rawData = new double[size][];
             String line; try
@@ -111,7 +232,6 @@ namespace KmeansHand
                 }
                 sr.Close();
                 return rawData;
-
             }
             catch (Exception e)
             {
@@ -124,18 +244,28 @@ namespace KmeansHand
             return rawData;
         }
 
-        public static Cluster RunClusters(int numClusters, double[][] rawData)
+        public static Cluster CreateClusters(int numClusters, double[][] rawData, int[] sensors)
         {
             Console.WriteLine("Begin k-means demo");
 
-            /*Console.WriteLine("Raw unclustered data:");
+			/*Console.WriteLine("Raw unclustered data:");
             Console.WriteLine("    Height Weight");
             Console.WriteLine("-------------------");
             ShowData(rawData, 1, true, true);
 
             Console.WriteLine("Setting numClusters to " + numClusters);*/
 
-            Cluster cluster = Clustering(rawData, numClusters);
+			double[][] rawDataCopy = new double[rawData.Length][];
+
+			for (int i = 0; i < rawData.Length; i++) {
+				rawDataCopy[i] = new double[sensors.Length];
+				for (int j = 0; j < sensors.Length; j++)
+				{
+					rawDataCopy[i][j] = rawData[i][sensors[j]]; //
+				}
+			}
+
+            Cluster cluster = Clustering(rawDataCopy, numClusters);
 
             Console.WriteLine("K-means clustering complete");
 
@@ -145,8 +275,8 @@ namespace KmeansHand
             Console.WriteLine("Raw data by cluster:");
             ShowClustered(rawData, cluster.Clustering, numClusters, 1);
 
-            Console.WriteLine("End k-means clustering demo");*/
-            Console.ReadLine();
+            Console.WriteLine("End k-means clustering demo");
+            Console.ReadLine();*/
 
             return cluster;
         }
