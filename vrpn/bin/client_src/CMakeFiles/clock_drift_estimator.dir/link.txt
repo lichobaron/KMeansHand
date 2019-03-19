@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/clock_drift_estimator.dir/clock_drift_estimator.C.o  -o clock_drift_estimator ../libvrpn.a ../quat/libquat.a -lm 

@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/ff_client.dir/ff_client.C.o  -o ff_client ../libvrpn.a ../quat/libquat.a -lm 

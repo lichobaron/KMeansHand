@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/printcereal.dir/printcereal.C.o  -o printcereal ../libvrpn.a ../quat/libquat.a -lm 

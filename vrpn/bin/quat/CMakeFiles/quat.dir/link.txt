@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libquat.a  CMakeFiles/quat.dir/matrix.c.o CMakeFiles/quat.dir/quat.c.o CMakeFiles/quat.dir/vector.c.o CMakeFiles/quat.dir/xyzquat.c.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libquat.a

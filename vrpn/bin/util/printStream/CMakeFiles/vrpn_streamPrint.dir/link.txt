@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/vrpn_streamPrint.dir/vrpn_streamPrint.cpp.o  -o vrpn_streamPrint ../../libvrpn.a ../../quat/libquat.a -lm 

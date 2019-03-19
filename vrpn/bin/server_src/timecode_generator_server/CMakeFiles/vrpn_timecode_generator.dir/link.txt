@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libvrpn_timecode_generator.a  CMakeFiles/vrpn_timecode_generator.dir/vrpn_timecode_generator.cpp.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libvrpn_timecode_generator.a

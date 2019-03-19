@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/test_vrpn.dir/test_vrpn.C.o  -o test_vrpn ../libvrpnserver.a ../quat/libquat.a -lm /usr/local/lib/libusb-1.0.dylib -framework CoreFoundation -framework IOKit ../atmellib/libvrpn_atmel.a ../gpsnmealib/libgpsnmea.a 

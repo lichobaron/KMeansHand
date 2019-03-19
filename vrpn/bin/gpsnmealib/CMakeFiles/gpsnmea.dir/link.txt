@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libgpsnmea.a  CMakeFiles/gpsnmea.dir/latLonCoord.C.o CMakeFiles/gpsnmea.dir/nmeaParser.C.o CMakeFiles/gpsnmea.dir/typedCoord.C.o CMakeFiles/gpsnmea.dir/utmCoord.C.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libgpsnmea.a

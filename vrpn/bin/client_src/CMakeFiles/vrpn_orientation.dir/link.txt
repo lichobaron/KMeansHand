@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++   -fPIC -O2 -g -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/vrpn_orientation.dir/vrpn_orientation.C.o  -o vrpn_orientation ../libvrpn.a -framework GLUT -framework OpenGL -framework OpenGL ../quat/libquat.a -lm 
