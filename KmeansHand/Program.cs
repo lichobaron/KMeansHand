@@ -26,42 +26,42 @@ namespace KmeansHand
         {
             Console.WriteLine("Begin k-means demo");
 
-			string path = "C:/Users/LICHO/Documents/MyWorkspace/KMeansHand/various/";
-			//string path = "/Users/licho/Documents/varios/KMeansHand/KmeansHand/Data/movall.txt";
-			int size = 516;
+			//string path = "C:/Users/LICHO/Documents/MyWorkspace/KMeansHand/various/";
+			string path = "/Users/licho/Documents/varios/KMeansHand/KmeansHand/Data/";
+			int size = 600;
             
-			string rawPath = path + "d2.txt";
+			string rawPath = path + "muestreo.txt";
 
 			double[][] rawData;
             rawData = readData(rawPath, size);
 
 			int[] finger1 = { 0,1 };
 			Cluster cluster1 = CreateClusters(3, rawData, finger1);
-			saveData(path + "finger1.txt", cluster1);
+			saveData(path + "finger13.txt", cluster1);
 
 			int[] finger2 = { 3, 4 };
 			Cluster cluster2 = CreateClusters(3, rawData, finger2);
-			saveData(path + "finger2.txt", cluster2);
+			saveData(path + "finger23.txt", cluster2);
 
 			int[] finger3 = { 6, 7 };
 			Cluster cluster3 = CreateClusters(3, rawData, finger3);
-			saveData(path + "finger3.txt", cluster3);
+			saveData(path + "finger33.txt", cluster3);
 
 			int[] finger4 = { 9, 10 };
 			Cluster cluster4 = CreateClusters(3, rawData, finger4);
-			saveData(path + "finger4.txt", cluster4);
+			saveData(path + "finger43.txt", cluster4);
 
 			int[] finger5 = { 12, 13 };
 			Cluster cluster5 = CreateClusters(3, rawData, finger5);
-			saveData(path + "finger5.txt", cluster5);
+			saveData(path + "finger53.txt", cluster5);
 
-			string[] filenames = { path + "finger1.txt", path + "finger2.txt", path + "finger3.txt", path + "finger4.txt", path + "finger5.txt"};
+			/*string[] filenames = { path + "finger1.txt", path + "finger2.txt", path + "finger3.txt", path + "finger4.txt", path + "finger5.txt"};
 
 			double[][][] means = getMeansFromFile(filenames, 3);
 
 			double[] tuple0 = { 0.37, 0.49, 0.57, 0.33, 1.00, 0.74, 0.33, 0.34, 0.61, 0.10, 1.00, 0.61, 0.11, 0.17 };
 
-			Console.WriteLine(string.Join(", ", TestFingers(tuple0, means)));
+			Console.WriteLine(string.Join(", ", TestFingers(tuple0, means)));*/
 			Console.ReadLine();
 
 
@@ -283,7 +283,7 @@ namespace KmeansHand
 
         public static Cluster Clustering(double[][] rawData, int numClusters)
         {
-            double[][] data = Normalized(rawData);
+            double[][] data = rawData;/* Normalized(rawData)*/;
             bool changed = true; bool success = true;
             int[] clustering = InitClustering(data.Length, numClusters, 0);
             double[][] means = Allocate(numClusters, data[0].Length);
