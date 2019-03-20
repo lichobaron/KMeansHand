@@ -28,9 +28,10 @@ namespace KmeansHand
 
 			//string path = "C:/Users/LICHO/Documents/MyWorkspace/KMeansHand/various/";
 			string path = "/Users/licho/Documents/varios/KMeansHand/KmeansHand/Data/";
-			int size = 600;
-            
-			string rawPath = path + "muestreo.txt";
+			int size = 880;
+
+            //Right Glove
+			string rawPath = path + "rightGlove.txt";
 
 			double[][] rawData;
             rawData = readData(rawPath, size);
@@ -55,18 +56,45 @@ namespace KmeansHand
 			Cluster cluster5 = CreateClusters(3, rawData, finger5);
 			saveData(path + "finger53.txt", cluster5);
 
-			/*string[] filenames = { path + "finger1.txt", path + "finger2.txt", path + "finger3.txt", path + "finger4.txt", path + "finger5.txt"};
+            //Left Glove
+            string rawPathl = path + "leftGlove.txt";
+
+            double[][] rawDatal;
+            rawDatal = readData(rawPathl, size);
+
+            int[] finger1l = { 0, 1 };
+            Cluster cluster1l = CreateClusters(3, rawDatal, finger1l);
+            saveData(path + "finger13l.txt", cluster1l);
+
+            int[] finger2l = { 3, 4 };
+            Cluster cluster2l = CreateClusters(3, rawDatal, finger2l);
+            saveData(path + "finger23l.txt", cluster2l);
+
+            int[] finger3l = { 6, 7 };
+            Cluster cluster3l = CreateClusters(3, rawDatal, finger3l);
+            saveData(path + "finger33l.txt", cluster3l);
+
+            int[] finger4l = { 9, 10 };
+            Cluster cluster4l = CreateClusters(3, rawDatal, finger4l);
+            saveData(path + "finger43l.txt", cluster4l);
+
+            int[] finger5l = { 12, 13 };
+            Cluster cluster5l = CreateClusters(3, rawDatal, finger5l);
+            saveData(path + "finger53l.txt", cluster5l);
+
+            /*string[] filenames = { path + "finger1.txt", path + "finger2.txt", path + "finger3.txt", path + "finger4.txt", path + "finger5.txt"};
 
 			double[][][] means = getMeansFromFile(filenames, 3);
 
 			double[] tuple0 = { 0.37, 0.49, 0.57, 0.33, 1.00, 0.74, 0.33, 0.34, 0.61, 0.10, 1.00, 0.61, 0.11, 0.17 };
 
 			Console.WriteLine(string.Join(", ", TestFingers(tuple0, means)));*/
-			Console.ReadLine();
+            Console.ReadLine();
 
 
 		}
 
+        /*
 		public static double[] getFingersTuple(double[] tuple, int finger) {
 			double[] r = new double[2];
 			switch (finger)
@@ -163,12 +191,12 @@ namespace KmeansHand
 						minIndex = j;
 					}
 				}
-				r[i] = translateSensor(minIndex);
+				r[i] = translateSensor(minIndex, i);
 			}
 			return r;
         }
 
-		public static int translateSensor(int num)
+		public static int translateSensor(int num, int finger)
 		{
 			//Console.WriteLine(num);
 			int r = 99;
@@ -184,8 +212,8 @@ namespace KmeansHand
 			{
 				r = 1;
 			}
-			return r;
-		}
+            return r;
+		}*/
 
 		public static void saveData(string filename, Cluster cluster)
 		{
@@ -289,7 +317,7 @@ namespace KmeansHand
             double[][] means = Allocate(numClusters, data[0].Length);
 
             Console.WriteLine("----------------------------");
-            int maxCount = data.Length * 10;
+            int maxCount = data.Length * 1000;
             int ct = 0;
             while (changed == true && success == true && ct < maxCount)
             {
