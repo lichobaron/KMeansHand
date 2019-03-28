@@ -28,58 +28,58 @@ namespace KmeansHand
 
 			//string path = "C:/Users/LICHO/Documents/MyWorkspace/KMeansHand/various/";
 			string path = "/Users/licho/Documents/varios/KMeansHand/KmeansHand/Data/";
-			int size = 880;
+			int size = 1200;
 
             //Right Glove
-			string rawPath = path + "rightGlove.txt";
+			string rawPath = path + "RightGlove.txt";
 
 			double[][] rawData;
             rawData = readData(rawPath, size);
 
 			int[] finger1 = { 0,1 };
-			Cluster cluster1 = CreateClusters(3, rawData, finger1);
+			Cluster cluster1 = CreateClusters(2, rawData, finger1);
 			saveData(path + "finger13.txt", cluster1);
 
 			int[] finger2 = { 3, 4 };
-			Cluster cluster2 = CreateClusters(3, rawData, finger2);
+			Cluster cluster2 = CreateClusters(2, rawData, finger2);
 			saveData(path + "finger23.txt", cluster2);
 
 			int[] finger3 = { 6, 7 };
-			Cluster cluster3 = CreateClusters(3, rawData, finger3);
+			Cluster cluster3 = CreateClusters(2, rawData, finger3);
 			saveData(path + "finger33.txt", cluster3);
 
 			int[] finger4 = { 9, 10 };
-			Cluster cluster4 = CreateClusters(3, rawData, finger4);
+			Cluster cluster4 = CreateClusters(2, rawData, finger4);
 			saveData(path + "finger43.txt", cluster4);
 
 			int[] finger5 = { 12, 13 };
-			Cluster cluster5 = CreateClusters(3, rawData, finger5);
+			Cluster cluster5 = CreateClusters(2, rawData, finger5);
 			saveData(path + "finger53.txt", cluster5);
 
             //Left Glove
-            string rawPathl = path + "leftGlove.txt";
+            string rawPathl = path + "LeftGlove.txt";
 
             double[][] rawDatal;
             rawDatal = readData(rawPathl, size);
 
             int[] finger1l = { 0, 1 };
-            Cluster cluster1l = CreateClusters(3, rawDatal, finger1l);
+            Cluster cluster1l = CreateClusters(2, rawDatal, finger1l);
             saveData(path + "finger13l.txt", cluster1l);
 
             int[] finger2l = { 3, 4 };
-            Cluster cluster2l = CreateClusters(3, rawDatal, finger2l);
+            Cluster cluster2l = CreateClusters(2, rawDatal, finger2l);
             saveData(path + "finger23l.txt", cluster2l);
 
             int[] finger3l = { 6, 7 };
-            Cluster cluster3l = CreateClusters(3, rawDatal, finger3l);
+            Cluster cluster3l = CreateClusters(2, rawDatal, finger3l);
             saveData(path + "finger33l.txt", cluster3l);
 
             int[] finger4l = { 9, 10 };
-            Cluster cluster4l = CreateClusters(3, rawDatal, finger4l);
+            Cluster cluster4l = CreateClusters(2, rawDatal, finger4l);
             saveData(path + "finger43l.txt", cluster4l);
 
             int[] finger5l = { 12, 13 };
-            Cluster cluster5l = CreateClusters(3, rawDatal, finger5l);
+            Cluster cluster5l = CreateClusters(2, rawDatal, finger5l);
             saveData(path + "finger53l.txt", cluster5l);
 
             /*string[] filenames = { path + "finger1.txt", path + "finger2.txt", path + "finger3.txt", path + "finger4.txt", path + "finger5.txt"};
@@ -93,127 +93,6 @@ namespace KmeansHand
 
 
 		}
-
-        /*
-		public static double[] getFingersTuple(double[] tuple, int finger) {
-			double[] r = new double[2];
-			switch (finger)
-			{
-				case 1:
-					r[0] = tuple[0];
-					r[1] = tuple[1];
-					break;
-				case 2:
-					r[0] = tuple[3];
-					r[1] = tuple[4];
-					break;
-				case 3:
-					r[0] = tuple[6];
-					r[1] = tuple[7];
-					break;
-				case 4:
-					r[0] = tuple[9];
-					r[1] = tuple[10];
-					break;
-				case 5:
-					r[0] = tuple[12];
-					r[1] = tuple[13];
-					break;
-				default:
-					r[0] = -1;
-					r[1] = -1;
-					break;
-			}
-			return r;
-		}
-
-		public static double[][][] getMeansFromFile(string[] fileNames, int numK)
-		{
-			double[][][] means = new double[5][][];
-			
-			for (int i =0; i < fileNames.Length; i++) {
-				means[i] = new double[numK][];
-				string filename = fileNames[i];
-				String line; try
-				{
-					StreamReader sr = new StreamReader(filename);
-					line = sr.ReadLine();
-
-					int j = 0;
-					while (line != null)
-					{
-						Regex reg = new Regex(@"([-+]?[0-9]*\.?[0-9]+)");
-						int tam = 0;
-						foreach (Match match in reg.Matches(line))
-						{
-							tam++;
-						}
-						means[i][j] = new double[tam];
-
-						int k = 0;
-						foreach (Match match in reg.Matches(line))
-						{
-							means[i][j][k] = double.Parse(match.Value, CultureInfo.InvariantCulture.NumberFormat);
-							k++;
-						}
-
-						j++;
-						line = sr.ReadLine();
-					}
-					sr.Close();
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine("Exception: " + e.Message);
-				}
-				finally
-				{
-					Console.WriteLine("Executing finally block files.");
-				}
-			}
-			
-			return means;
-		}
-
-		public static int[] TestFingers(double[] tuple, double[][][] means)
-        {
-
-			int[] r = new int[5];
-
-			for (int i = 0; i < 5; i++) //num dedos
-			{
-				int minIndex = 0;
-				double min = Distance(getFingersTuple(tuple,i), means[i][0]);
-				for (int j = 1; j < means[i].Length; j++)
-				{
-					if (Distance(getFingersTuple(tuple, i), means[i][j]) < min)
-					{
-						minIndex = j;
-					}
-				}
-				r[i] = translateSensor(minIndex, i);
-			}
-			return r;
-        }
-
-		public static int translateSensor(int num, int finger)
-		{
-			//Console.WriteLine(num);
-			int r = 99;
-			if (num == 0)
-			{
-				r = 0;
-			}
-			else if (num == 1)
-			{
-				r = -1;
-			}
-			else if (num == 2)
-			{
-				r = 1;
-			}
-            return r;
-		}*/
 
 		public static void saveData(string filename, Cluster cluster)
 		{
@@ -317,7 +196,7 @@ namespace KmeansHand
             double[][] means = Allocate(numClusters, data[0].Length);
 
             Console.WriteLine("----------------------------");
-            int maxCount = data.Length * 1000;
+            int maxCount = data.Length * 10000;
             int ct = 0;
             while (changed == true && success == true && ct < maxCount)
             {
